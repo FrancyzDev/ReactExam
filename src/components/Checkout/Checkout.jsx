@@ -1,6 +1,6 @@
 import '../../App.css'
 import { useState } from 'react'
-import { useNavigate } from "react-router"
+import {Link, useNavigate} from "react-router"
 import { useCart } from '../../contexts/CartContext.jsx'
 const token = "8404763057:AAG4aOnK5IVRsW8xSGCYQNW8YdG7QiGbxog";
 const telegramUrl = "https://api.telegram.org/bot" + token;
@@ -287,7 +287,12 @@ export function Checkout() {
                                     className="w-20 h-20 object-contain rounded"
                                 />
                                 <div className="flex-1">
-                                    <h3 className="font-semibold">{item.name}</h3>
+                                    <Link
+                                        to={`/products/product/${item.id}`}
+                                        className="hover:text-purple-600"
+                                    >
+                                        <h3 className="font-semibold">{item.name}</h3>
+                                    </Link>
                                     <p className="text-sm text-gray-600">{item.type}</p>
                                     <div className="flex justify-between items-center mt-2">
                                         <span className="text-lg font-bold text-purple-700">

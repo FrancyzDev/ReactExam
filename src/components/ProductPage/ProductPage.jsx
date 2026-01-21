@@ -33,7 +33,7 @@ export function ProductPage() {
                     onClick={() => navigate(-1)}
                     className="text-purple-600 hover:text-purple-800 flex items-center gap-2 mb-4 cursor-pointer"
                 >
-                    ← Ще
+                    ← Назад
                 </button>
             </div>
 
