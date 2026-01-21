@@ -319,7 +319,7 @@ export function Checkout() {
                         </div>
 
                         <div className="flex justify-between items-center pt-4 border-t mt-4">
-                            <span className="text-2xl font-bold">Итого</span>
+                            <span className="text-2xl font-bold">Разом</span>
                             <span className="text-2xl font-bold text-purple-700">
                                 {total + deliveryPrice} грн
                             </span>
