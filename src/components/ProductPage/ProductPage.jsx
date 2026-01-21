@@ -2,6 +2,8 @@ import '../../App.css'
 import { useParams, useNavigate } from "react-router";
 import { useCart } from '../../contexts/CartContext.jsx';
 import { useProducts } from '../../contexts/ProductsContext.jsx';
+import { Notification } from "../Notification/Notification.jsx";
+import {useState} from "react";
 
 export function ProductPage() {
     const { productId } = useParams();
@@ -9,6 +11,16 @@ export function ProductPage() {
     const { addToCart } = useCart();
     const { items, categories } = useProducts();
     const product = items.find(item => item.id === parseInt(productId));
+    const [showNotification, setShowNotification] = useState(false);
+
+    const handleNotification = () => {
+        setShowNotification(true);
+
+        setTimeout(() => {
+            setShowNotification(false);
+        }, 2000);
+    };
+
     if (!product) {
         return (
             <div className="container mx-auto px-4 py-16 text-center">
@@ -80,9 +92,11 @@ export function ProductPage() {
                             quantity: 1,
                             addedAt: new Date().toISOString()
                         });
+                        handleNotification()
                     }} className="w-full bg-purple-600 text-white py-3 rounded-lg hover:bg-purple-700 transition-colors font-medium cursor-pointer">
                         Додати до кошика
                     </button>
+                    {showNotification && <Notification text="Товар додано до кошика!" />}
                 </div>
             </div>
         </div>

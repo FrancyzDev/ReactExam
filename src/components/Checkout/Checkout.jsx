@@ -41,7 +41,7 @@ ${orderData.order.items.map((item, index) =>
         })
 
         if (!response.ok) {
-            const errorMessage = `HTTP ${response.status}: ${await response.text()} ${response.statusText}`;
+            const errorMessage = `HTTP ${response.status}: ${await response.text()}`;
             console.log(errorMessage);
         }
         return await response.json();

@@ -1,13 +1,57 @@
 import { Link, useNavigate } from 'react-router';
 import '../../App.css';
 import { useCart } from '../../contexts/CartContext.jsx';
+import { ConfirmModal } from "../ConfirmModal/ConfirmModal.jsx";
+import {useState} from "react";
 
 export function Cart() {
     const { cart, removeFromCart, updateQuantity, clearCart, deliveryPrice } = useCart();
     const navigate = useNavigate();
+    const [modalState, setModalState] = useState({
+        isOpen: false,
+        itemToRemove: null,
+        action: '',
+        itemName: ''
+    });
 
     const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
     const total = subtotal + deliveryPrice;
+
+    const openRemoveModal = (item) => {
+        setModalState({
+            isOpen: true,
+            itemToRemove: item.id,
+            action: 'remove',
+            itemName: item.name
+        });
+    };
+
+    const openClearModal = () => {
+        setModalState({
+            isOpen: true,
+            itemToRemove: null,
+            action: 'clear',
+            itemName: ''
+        });
+    };
+
+    const closeModal = () => {
+        setModalState({
+            isOpen: false,
+            itemToRemove: null,
+            action: 'remove',
+            itemName: ''
+        });
+    };
+
+    const handleConfirm = () => {
+        if (modalState.action === 'remove' && modalState.itemToRemove) {
+            removeFromCart(modalState.itemToRemove);
+        } else if (modalState.action === 'clear') {
+            clearCart();
+        }
+        closeModal();
+    };
 
     const handleIncreaseQuantity = (id) => {
         const item = cart.find(item => item.id === id);
@@ -21,7 +65,7 @@ export function Cart() {
         if (item && item.quantity > 1) {
             updateQuantity(id, item.quantity - 1);
         } else {
-            removeFromCart(id);
+            openRemoveModal(item);
         }
     };
 
@@ -50,7 +94,7 @@ export function Cart() {
                                         Товари в кошику ({cart.length})
                                     </h2>
                                     <button
-                                        onClick={clearCart}
+                                        onClick={openClearModal}
                                         className="text-red-500 hover:text-red-700 text-sm font-medium cursor-pointer"
                                     >
                                         Очистити кошик
@@ -82,7 +126,7 @@ export function Cart() {
                                                         <p className="text-gray-500 text-sm mb-1">{item.type}</p>
                                                     </div>
                                                     <button
-                                                        onClick={() => removeFromCart(item.id)}
+                                                        onClick={() => openRemoveModal(item)}
                                                         className="text-gray-400 hover:text-red-500 text-lg cursor-pointer"
                                                     >
                                                         ×
@@ -171,6 +215,20 @@ export function Cart() {
                     </div>
                 </div>
             )}
+            <ConfirmModal
+                isOpen={modalState.isOpen}
+                onConfirm={handleConfirm}
+                onCancel={closeModal}
+                title={modalState.action === 'remove' ? "Видалити товар" : "Очистити кошик"}
+                message={
+                    modalState.action === 'remove'
+                        ? `Ви дійсно хочете видалити "${modalState.itemName}" з кошика?`
+                        : "Ви дійсно хочете очистити весь кошик? Цю дію не можна буде скасувати."
+                }
+                confirmText={modalState.action === 'remove' ? "Так, видалити" : "Так, очистити"}
+                cancelText="Скасувати"
+                confirmColor="red"
+            />
         </div>
     );
 }

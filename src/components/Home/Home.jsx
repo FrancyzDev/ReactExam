@@ -1,5 +1,4 @@
 import '../../App.css'
-import {Link} from "react-router";
 
 export function Home() {
     return (
