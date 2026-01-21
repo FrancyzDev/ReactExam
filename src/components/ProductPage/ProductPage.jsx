@@ -81,7 +81,7 @@ export function ProductPage() {
                             addedAt: new Date().toISOString()
                         });
                     }} className="w-full bg-purple-600 text-white py-3 rounded-lg hover:bg-purple-700 transition-colors font-medium cursor-pointer">
-                        Добавить в корзину
+                        Додати до кошика
                     </button>
                 </div>
             </div>

@@ -3,16 +3,11 @@ import '../../App.css';
 import { useCart } from '../../contexts/CartContext.jsx';
 
 export function Cart() {
-    const { cart, removeFromCart, updateQuantity, clearCart } = useCart();
+    const { cart, removeFromCart, updateQuantity, clearCart, deliveryPrice } = useCart();
     const navigate = useNavigate();
 
     const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    const deliveryCost = 70
-    const total = subtotal + deliveryCost;
-
-    const handleCheckout = () => {
-        navigate('/checkout');
-    };
+    const total = subtotal + deliveryPrice;
 
     const handleIncreaseQuantity = (id) => {
         const item = cart.find(item => item.id === id);
@@ -35,14 +30,14 @@ export function Cart() {
             {cart.length === 0 ? (
                 <div className="text-center py-12">
                     <div className="mb-6">
-                        <h2 className="text-2xl font-semibold text-gray-700 mb-2">Ваша корзина пуста</h2>
-                        <p className="text-gray-500 mb-6">Добавьте товары, чтобы сделать заказ</p>
+                        <h2 className="text-2xl font-semibold text-gray-700 mb-2">Ваш кошик порожній</h2>
+                        <p className="text-gray-500 mb-6">Додайте товари, щоб зробити замовлення</p>
                     </div>
                     <Link
                         to="/products"
                         className="inline-block bg-purple-600 hover:bg-purple-700 text-white font-medium py-3 px-8 rounded-lg transition-colors duration-200"
                     >
-                        Перейти в каталог
+                        Перейти до каталогу
                     </Link>
                 </div>
             ) : (
@@ -52,13 +47,13 @@ export function Cart() {
                             <div className="p-6">
                                 <div className="flex justify-between items-center mb-6">
                                     <h2 className="text-xl font-semibold">
-                                        Товары в корзине ({cart.length})
+                                        Товари в кошику ({cart.length})
                                     </h2>
                                     <button
                                         onClick={clearCart}
                                         className="text-red-500 hover:text-red-700 text-sm font-medium cursor-pointer"
                                     >
-                                        Очистить корзину
+                                        Очистити кошик
                                     </button>
                                 </div>
 
@@ -85,7 +80,6 @@ export function Cart() {
                                                             </Link>
                                                         </h3>
                                                         <p className="text-gray-500 text-sm mb-1">{item.type}</p>
-                                                        <p className="text-gray-500 text-sm">Объем: {item.size}</p>
                                                     </div>
                                                     <button
                                                         onClick={() => removeFromCart(item.id)}
@@ -135,7 +129,7 @@ export function Cart() {
                                 to="/products"
                                 className="inline-flex items-center text-purple-600 hover:text-purple-800 font-medium"
                             >
-                                ← Продолжить покупки
+                                ← Продовжити покупки
                             </Link>
                         </div>
                     </div>
@@ -156,22 +150,22 @@ export function Cart() {
 
                                 <div className="flex justify-between">
                                     <span className="text-gray-600">Доставка</span>
-                                    <span className="font-medium">{deliveryCost} грн.</span>
+                                    <span className="font-medium">{deliveryPrice} грн.</span>
                                 </div>
 
                                 <div className="pt-4 border-t border-gray-200">
                                     <div className="flex justify-between text-lg font-bold">
-                                        <span>Итого</span>
+                                        <span>Разом</span>
                                         <span>{total} грн.</span>
                                     </div>
                                 </div>
                             </div>
 
                             <button
-                                onClick={handleCheckout}
+                                onClick={() => navigate('/checkout')}
                                 className="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-4 rounded-lg transition-colors duration-200 mb-4 cursor-pointer"
                             >
-                                Оформить заказ
+                                Оформити замовлення
                             </button>
                         </div>
                     </div>

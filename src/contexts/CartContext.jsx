@@ -56,9 +56,7 @@ export const CartProvider = ({ children }) => {
 
         setCart(prevCart =>
             prevCart.map(item =>
-                item.id === productId
-                    ? { ...item, quantity }
-                    : item
+                item.id === productId ? { ...item, quantity } : item
             )
         );
     };

@@ -18,22 +18,22 @@ export function OrderSuccess() {
                 </div>
 
                 <h1 className="text-3xl font-bold mb-4 text-green-600">
-                    Заказ успешно оформлен!
+                    Замовлення успішно оформлено!
                 </h1>
 
                 <p className="text-lg text-gray-600 mb-2">
-                    Спасибо за ваш заказ!
+                    Дякуємо за ваше замовлення!
                 </p>
 
                 {orderNumber && (
                     <p className="text-gray-700 mb-4">
-                        Номер вашего заказа: <span className="font-bold">№{Math.floor(orderNumber / 1000)}</span>
+                        Номер вашого замовлення: <span className="font-bold">№{Math.floor(orderNumber / 1000)}</span>
                     </p>
                 )}
 
                 {totalAmount && (
                     <p className="text-gray-700 mb-6">
-                        Сумма заказа: <span className="font-bold text-purple-700">{totalAmount + deliveryPrice} грн</span>
+                        Сума замовлення: <span className="font-bold text-purple-700">{totalAmount + deliveryPrice} грн</span>
                     </p>
                 )}
 
@@ -49,20 +49,20 @@ export function OrderSuccess() {
                     onClick={() => navigate('/')}
                     className="w-full md:w-auto bg-purple-600 text-white px-8 py-3 rounded-lg hover:bg-purple-700 transition-colors font-medium cursor-pointer"
                 >
-                    Вернуться на главную
+                    Повернутися на головну
                 </button>
 
                 <button
                     onClick={() => navigate('/products')}
                     className="w-full md:w-auto bg-gray-200 text-gray-800 px-8 py-3 rounded-lg hover:bg-gray-300 transition-colors font-medium ml-4 cursor-pointer"
                 >
-                    Продолжить покупки
+                    Продовжити покупки
                 </button>
             </div>
 
             <div className="mt-12 pt-8 border-t">
                 <p className="text-gray-500 text-sm">
-                    Если у вас возникли вопросы, свяжитесь с нами через <a className={"text-gray-500 hover:text-purple-700 transition-colors text-xl"} href="https://t.me/artemmaltsevwork">Telegram</a>
+                    Якщо у вас виникли питання, зв'яжіться з нами через <a className={"text-gray-500 hover:text-purple-700 transition-colors text-xl"} href="https://t.me/artemmaltsevwork">Telegram</a>
                 </p>
             </div>
         </div>

@@ -1,5 +1,4 @@
 import {BrowserRouter, Routes, Route, Link} from 'react-router';
-import {useEffect, useState} from 'react'
 import './App.css'
 import { CartProvider } from './contexts/CartContext.jsx';
 import { ProductsProvider } from './contexts/ProductsContext.jsx'; // новый провайдер
@@ -11,6 +10,7 @@ import {Cart} from './components/Cart/Cart.jsx'
 import telegram from './images/telegram.svg'
 import {Checkout} from "./components/Checkout/Checkout.jsx";
 import {OrderSuccess} from "./components/OrderSuccess/OrderSuccess.jsx";
+
 
 function App() {
     return <ProductsProvider>
@@ -36,7 +36,6 @@ function App() {
                         <Route path="/cart" element={<Cart/>}/>
                         <Route path="/checkout" element={<Checkout/>}/>
                         <Route path="/order-success" element={<OrderSuccess/>}/>
-                        <Route path="/admin" element={<Home/>}></Route>
                     </Routes>
                 </main>
             </BrowserRouter>

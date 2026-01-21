@@ -8,9 +8,7 @@ export function Products() {
     const [selectedCategories, setSelectedCategories] = useState([]);
     const [filteredItems, setFilteredItems] = useState(items);
 
-    // Фильтрация товаров при изменении выбранных категорий
     useEffect(() => {
-        console.log(items)
         if (selectedCategories.length === 0) {
             setFilteredItems(items);
         } else {

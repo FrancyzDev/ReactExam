@@ -31,7 +31,7 @@ export function Home() {
                 </p>
             </div>
             <p className="font-light">
-                Питання стосовно замовлень: <a className="text-[#1155cc]" href="https://t.me/artemmaltsevwork">@artemmaltsevwork</a>
+                Питання стосовно замовлень: <a className={"text-gray-500 hover:text-[#1155cc] transition-colors text-xl"} href="https://t.me/artemmaltsevwork">@artemmaltsevwork</a>
             </p>
         </div>
     )

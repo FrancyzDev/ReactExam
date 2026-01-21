@@ -1,4 +1,3 @@
-// components/Checkout/Checkout.jsx
 import '../../App.css'
 import { useState } from 'react'
 import { useNavigate } from "react-router"
@@ -25,11 +24,11 @@ async function sendOrderData(orderData) {
 
 📦 ТОВАРИ:
 ${orderData.order.items.map((item, index) =>
-            `${index + 1}. ${item.name}
+`${index + 1}. ${item.name}
      Кількість: ${item.quantity}
      Ціна: ${item.price} ₴
      Сума: ${item.total} ₴\n`
-        ).join('\n')}
+).join('\n')}
 
 📊 ЗАГАЛЬНА СУМА: ${orderData.order.totalAmount} ₴
 `;
@@ -65,8 +64,8 @@ export function Checkout() {
     const [errors, setErrors] = useState({})
     const [isSubmitting, setIsSubmitting] = useState(false)
 
-    const total = cart.reduce((sum, item) => sum += item.price * item.quantity, 0)
-    const itemsCount = cart.reduce((sum, item) => sum += item.quantity, 0)
+    const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0)
+    const itemsCount = cart.reduce((sum, item) => sum + item.quantity, 0);
 
     const handleInputChange = (e) => {
         const { name, value, type, checked } = e.target
@@ -75,13 +74,11 @@ export function Checkout() {
             [name]: type === 'checkbox' ? checked : value
         }))
 
-        // Очищаем ошибку при вводе
         if (errors[name]) {
             setErrors(prev => ({ ...prev, [name]: '' }))
         }
     }
 
-    // Валидация формы
     const validateForm = () => {
         const newErrors = {}
 
@@ -101,7 +98,6 @@ export function Checkout() {
         return Object.keys(newErrors).length === 0
     }
 
-    // Отправка формы
     const handleSubmit = async (e) => {
         e.preventDefault()
 
@@ -160,14 +156,14 @@ export function Checkout() {
         return (
             <div className="container mx-auto px-4 py-16 text-center">
                 <h2 className="text-2xl font-bold text-purple-600 mb-4">
-                    Ваша корзина пуста
+                    Ваш кошик порожній
                 </h2>
-                <p className="mb-6">Добавьте товары в корзину для оформления заказа</p>
+                <p className="mb-6">Додайте товари в кошик для оформлення замовлення</p>
                 <button
                     onClick={() => navigate('/products')}
                     className="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition-colors"
                 >
-                    Перейти к товарам
+                    Перейти до товарів
                 </button>
             </div>
         )
@@ -184,12 +180,12 @@ export function Checkout() {
                 </button>
             </div>
 
-            <h1 className="text-3xl font-bold mb-8 text-center">Оформление заказа</h1>
+            <h1 className="text-3xl font-bold mb-8 text-center">Оформлення замовлення</h1>
 
             <div className="grid lg:grid-cols-2 gap-8">
                 <div className="bg-white rounded-xl shadow-lg p-6">
                     <h2 className="text-2xl font-bold mb-6 text-purple-700">
-                        Ваши данные
+                        Ваші дані
                     </h2>
 
                     <form onSubmit={handleSubmit}>
@@ -214,10 +210,9 @@ export function Checkout() {
                             </div>
                         </div>
 
-                        {/* Телефон */}
                         <div className="mb-6">
                             <label className="block text-sm font-medium text-gray-700 mb-2">
-                                Номер телефона *
+                                Номер телефону *
                             </label>
                             <input
                                 type="tel"
@@ -234,10 +229,9 @@ export function Checkout() {
                             )}
                         </div>
 
-                        {/* Email */}
                         <div className="mb-6">
                             <label className="block text-sm font-medium text-gray-700 mb-2">
-                                Электронная почта *
+                                Електронна пошта *
                             </label>
                             <input
                                 type="email"
@@ -254,7 +248,6 @@ export function Checkout() {
                             )}
                         </div>
 
-                        {/* Чекбокс */}
                         <div className="mb-8">
                             <label className="flex items-center cursor-pointer">
                                 <input
@@ -265,26 +258,24 @@ export function Checkout() {
                                     className="w-5 h-5 text-purple-600 rounded focus:ring-purple-500"
                                 />
                                 <span className="ml-3 text-gray-700">
-                                    Я жду звонка от менеджера для подтверждения заказа
+                                    Я чекаю дзвінка від менеджера для підтвердження замовлення
                                 </span>
                             </label>
                         </div>
 
-                        {/* Кнопка оформления */}
                         <button
                             type="submit"
                             disabled={isSubmitting}
                             className="w-full bg-purple-600 text-white py-3 rounded-lg hover:bg-purple-700 transition-colors font-medium cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                         >
-                            {isSubmitting ? 'Оформление...' : `Оформить заказ за ${total + deliveryPrice} грн`}
+                            {isSubmitting ? 'Оформлення...' : `Оформити замовлення за ${total + deliveryPrice} грн`}
                         </button>
                     </form>
                 </div>
 
-                {/* Правая колонка: Товары в корзине */}
                 <div className="bg-white rounded-xl shadow-lg p-6">
                     <h2 className="text-2xl font-bold mb-6 text-purple-700">
-                        Ваш заказ ({itemsCount} товар{itemsCount > 1 ? 'а' : ''})
+                        Ваше замовлення ({itemsCount} товар{itemsCount > 1 ? "а" : ""})
                     </h2>
 
                     <div className="space-y-4 mb-6">
@@ -311,10 +302,9 @@ export function Checkout() {
                         ))}
                     </div>
 
-                    {/* Итоговая сумма */}
                     <div className="border-t pt-4">
                         <div className="flex justify-between items-center mb-2">
-                            <span className="text-lg text-gray-700">Товары ({itemsCount} шт.)</span>
+                            <span className="text-lg text-gray-700">Товари ({itemsCount} шт.)</span>
                             <span className="text-lg">{total} грн</span>
                         </div>
 
@@ -332,8 +322,8 @@ export function Checkout() {
                     </div>
 
                     <div className="mt-6 text-sm text-gray-500">
-                        <p className="mb-2">* - обязательные поля для заполнения</p>
-                        <p>После оформления заказа с вами свяжется менеджер для уточнения деталей доставки</p>
+                        <p className="mb-2">* - обов'язкові поля для заповнення</p>
+                        <p>Після оформлення замовлення з вами зв'яжеться менеджер для уточнення деталей доставки, якщо ви обрали цей варіант</p>
                     </div>
                 </div>
             </div>
