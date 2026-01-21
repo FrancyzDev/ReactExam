@@ -136,7 +136,7 @@ export function Cart() {
 
                     <div className="lg:col-span-1">
                         <div className="bg-white rounded-xl shadow-md p-6 sticky top-6">
-                            <h2 className="text-xl font-semibold mb-6">Сумма заказа</h2>
+                            <h2 className="text-xl font-semibold mb-6">Сума замовлення</h2>
 
                             <div className="space-y-4 mb-6">
                                 <div className="space-y-2">
