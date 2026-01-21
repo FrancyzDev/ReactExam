@@ -64,7 +64,7 @@ export function ProductPage() {
                     </div>
 
                     <div className="mb-8">
-                        <h3 className="font-semibold mb-3 text-lg">Описание</h3>
+                        <h3 className="font-semibold mb-3 text-lg">Опис</h3>
                         <p className="text-gray-700">
                             {product.description}
                         </p>
