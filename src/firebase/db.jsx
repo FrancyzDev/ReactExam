@@ -25,11 +25,27 @@ export const fetchProducts = async () => {
         });
         return products;
     } catch (error) {
-        console.error("Ошибка загрузки товаров: ", error);
+        console.error("Помилка завантаження продуктiв: ", error);
         return [];
     }
 };
 
+export const fetchCategories = async () => {
+    try {
+        const querySnapshot = await getDocs(collection(db, "categories"));
+        const categories = [];
+        querySnapshot.forEach((doc) => {
+            categories.push({
+                id: doc.id,
+                ...doc.data()
+            });
+        });
+        return categories;
+    } catch (error) {
+        console.error("Помилка завантаження категорiй: ", error);
+        return [];
+    }
+};
 
 export {
     db,

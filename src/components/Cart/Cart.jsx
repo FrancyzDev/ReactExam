@@ -56,7 +56,7 @@ export function Cart() {
                                     </h2>
                                     <button
                                         onClick={clearCart}
-                                        className="text-red-500 hover:text-red-700 text-sm font-medium"
+                                        className="text-red-500 hover:text-red-700 text-sm font-medium cursor-pointer"
                                     >
                                         Очистить корзину
                                     </button>
@@ -78,7 +78,7 @@ export function Cart() {
                                                     <div>
                                                         <h3 className="font-medium text-lg mb-1">
                                                             <Link
-                                                                to={`/products/${item.id}`}
+                                                                to={`/products/product/${item.id}`}
                                                                 className="hover:text-purple-600"
                                                             >
                                                                 {item.name}
@@ -89,7 +89,7 @@ export function Cart() {
                                                     </div>
                                                     <button
                                                         onClick={() => removeFromCart(item.id)}
-                                                        className="text-gray-400 hover:text-red-500 text-lg"
+                                                        className="text-gray-400 hover:text-red-500 text-lg cursor-pointer"
                                                     >
                                                         ×
                                                     </button>
@@ -99,7 +99,7 @@ export function Cart() {
                                                     <div className="flex items-center border border-gray-300 rounded-lg">
                                                         <button
                                                             onClick={() => handleDecreaseQuantity(item.id)}
-                                                            className="w-10 h-10 flex items-center justify-center text-gray-600 hover:bg-gray-100"
+                                                            className="w-10 h-10 flex items-center justify-center text-gray-600 hover:bg-gray-100 cursor-pointer"
                                                         >
                                                             −
                                                         </button>
@@ -108,7 +108,7 @@ export function Cart() {
                                                         </span>
                                                         <button
                                                             onClick={() => handleIncreaseQuantity(item.id)}
-                                                            className="w-10 h-10 flex items-center justify-center text-gray-600 hover:bg-gray-100"
+                                                            className="w-10 h-10 flex items-center justify-center text-gray-600 hover:bg-gray-100 cursor-pointer"
                                                         >
                                                             +
                                                         </button>
@@ -169,7 +169,7 @@ export function Cart() {
 
                             <button
                                 onClick={handleCheckout}
-                                className="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-4 rounded-lg transition-colors duration-200 mb-4"
+                                className="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-4 rounded-lg transition-colors duration-200 mb-4 cursor-pointer"
                             >
                                 Оформить заказ
                             </button>

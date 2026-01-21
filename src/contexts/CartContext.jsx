@@ -3,6 +3,7 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
+    const deliveryPrice = 70
     const [cart, setCart] = useState(() => {
         try {
             const savedCart = localStorage.getItem('cart');
@@ -27,7 +28,7 @@ export const CartProvider = ({ children }) => {
                         : item
                 );
             } else {
-                return [...prevCart, {
+                const currentCart = [...prevCart, {
                     id: product.id,
                     name: product.name,
                     type: product.type,
@@ -35,6 +36,10 @@ export const CartProvider = ({ children }) => {
                     image: product.image,
                     quantity: 1
                 }];
+                currentCart.sort((a, b) => {
+                    return a.name.localeCompare(b.name);
+                });
+                return currentCart;
             }
         });
     };
@@ -44,7 +49,6 @@ export const CartProvider = ({ children }) => {
     };
 
     const updateQuantity = (productId, quantity) => {
-        console.log(quantity);
         if (quantity < 1) {
             removeFromCart(productId);
             return;
@@ -73,7 +77,8 @@ export const CartProvider = ({ children }) => {
         removeFromCart,
         updateQuantity,
         clearCart,
-        getTotalItems
+        getTotalItems,
+        deliveryPrice
     };
 
     return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
