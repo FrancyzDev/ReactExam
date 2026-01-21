@@ -82,16 +82,16 @@ export function Checkout() {
     const validateForm = () => {
         const newErrors = {}
 
-        if (!formData.fullName.trim()) newErrors.fullName = 'Введите ПIБ'
+        if (!formData.fullName.trim()) newErrors.fullName = 'Введіть ПIБ'
         if (!formData.phone.trim()) {
-            newErrors.phone = 'Введите номер телефона'
+            newErrors.phone = 'Введіть номер телефону'
         } else if (!/^\+380[\s-]?\d{2}[\s-]?\d{3}[\s-]?\d{4}$/.test(formData.phone.trim())) {
-            newErrors.phone = 'Введите корректный номер телефона в формате: +380 ** *** ***'
+            newErrors.phone = 'Введіть правильний номер телефону у форматі: +380 ** *** ***'
         }
         if (!formData.email.trim()) {
-            newErrors.email = 'Введите email'
+            newErrors.email = 'Введіть email'
         } else if (!/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}(?:\.[A-Za-z]{2,})?$/.test(formData.email.trim())) {
-            newErrors.email = 'Введите корректный email'
+            newErrors.email = 'Введіть правильну адресу електронної пошти'
         }
 
         setErrors(newErrors)
@@ -234,7 +234,7 @@ export function Checkout() {
                                 Електронна пошта *
                             </label>
                             <input
-                                type="email"
+                                type="text"
                                 name="email"
                                 value={formData.email}
                                 onChange={handleInputChange}
